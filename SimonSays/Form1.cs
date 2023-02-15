@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.Media;
 using System.Drawing.Drawing2D;
+using System.IO;
 
 namespace SimonSays
 {
@@ -17,6 +18,7 @@ namespace SimonSays
         //TODO: create a List to store the pattern. Must be accessable on other screens
         public static List<int> pattern = new List<int>();
         public static int score;
+         
         public Form1()
         {
             InitializeComponent();

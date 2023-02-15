@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Media;
 using System.Drawing.Drawing2D;
 using System.Threading;
+using System.IO;
 
 namespace SimonSays
 {
@@ -18,6 +19,11 @@ namespace SimonSays
         int guess;
 
         Random randGen = new Random();
+        SoundPlayer red = new SoundPlayer(Properties.Resources.red);
+        SoundPlayer blue = new SoundPlayer(Properties.Resources.blue);
+        SoundPlayer yellow = new SoundPlayer(Properties.Resources.yellow);
+        SoundPlayer green = new SoundPlayer(Properties.Resources.green);
+        SoundPlayer mistake = new SoundPlayer(Properties.Resources.mistake);
 
         public GameScreen()
         {
@@ -53,38 +59,41 @@ namespace SimonSays
                 {
                     greenButton.BackColor = Color.Lime;
                     this.Refresh();
-                    Thread.Sleep(500);
+                    Thread.Sleep(250);
                     greenButton.BackColor = Color.ForestGreen;
                 }
                 if (Form1.pattern[i] == 2)
                 {
                     redButton.BackColor = Color.Red;
                     this.Refresh();
-                    Thread.Sleep(500);
+                    Thread.Sleep(250);
                     redButton.BackColor = Color.DarkRed;
                 }
                 if (Form1.pattern[i] == 3)
                 {
                     blueButton.BackColor = Color.Blue;
                     this.Refresh();
-                    Thread.Sleep(500);
+                    Thread.Sleep(250);
                     blueButton.BackColor = Color.DarkBlue;
                 }
                 if (Form1.pattern[i] == 4)
                 {
                     yellowButton.BackColor = Color.Yellow;
                     this.Refresh();
-                    Thread.Sleep(500);
+                    Thread.Sleep(250);
                     yellowButton.BackColor = Color.Goldenrod;
                 }
+                this.Refresh();
+                Thread.Sleep(250); 
             }
-               this.Refresh();
+               
             guess = 0;
         }
                 
         //TODO: create one of these event methods for each button
         private void greenButton_Click(object sender, EventArgs e)
         {
+            sound("green");
             ButtonClick(1);
             //TODO: is the value in the pattern list at index [guess] equal to a green?
             // change button color
@@ -100,30 +109,37 @@ namespace SimonSays
         }
         private void redButton_Click(object sender, EventArgs e)
         {
+            sound("red");
             ButtonClick(2); 
         }
         private void blueButton_Click(object sender, EventArgs e)
         {
+            sound("blue");
             ButtonClick(3); 
         }
         private void yellowButton_Click(object sender, EventArgs e)
         {
+            sound("yellow");
             ButtonClick(4);
         }
-        public void ButtonClick(int color)
+        public async void ButtonClick(int color)
         {
-            for (int i = 0; 0 < Form1.pattern.Count(); i++)
+            if (color == Form1.pattern[guess])
             {
-                if (color == Form1.pattern[i])
+                guess++; 
+                if (guess == Form1.pattern.Count())
                 {
+                    Refresh();
                     Form1.score++;
                     ComputerTurn();
                 }
-                else
-                {
-                    GameOver();
-                }
             }
+            else
+            {
+                mistake.Play();
+                GameOver();
+            }
+           
         }
 
         public void GameOver()
@@ -132,10 +148,19 @@ namespace SimonSays
 
             //TODO: close this screen and open the GameOverScreen
             Form f = FindForm();
-            f.Close();
+            f.Controls.Remove(this);
+
+            GameOverScreen gos = new GameOverScreen();
+            gos.Location = new Point((f.ClientSize.Width - gos.Width) / 2, (f.ClientSize.Height - gos.Height) / 2);
+            gos.Focus();
+            f.Controls.Add(gos);
         }
 
-        
-        
+        public void sound(string name)
+        {
+            var sound = new System.Windows.Media.MediaPlayer();
+            sound.Open(new Uri(Application.StartupPath + $"/Resources/{name}.wav"));
+            sound.Play();
+        }
     }
 }
