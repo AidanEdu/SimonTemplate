@@ -39,9 +39,9 @@
             this.gameOverLabel.AutoSize = true;
             this.gameOverLabel.Font = new System.Drawing.Font("Consolas", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gameOverLabel.ForeColor = System.Drawing.Color.White;
-            this.gameOverLabel.Location = new System.Drawing.Point(116, 85);
+            this.gameOverLabel.Location = new System.Drawing.Point(103, 68);
             this.gameOverLabel.Name = "gameOverLabel";
-            this.gameOverLabel.Size = new System.Drawing.Size(218, 47);
+            this.gameOverLabel.Size = new System.Drawing.Size(188, 40);
             this.gameOverLabel.TabIndex = 0;
             this.gameOverLabel.Text = "Game Over";
             // 
@@ -50,9 +50,9 @@
             this.patternLabel.AutoSize = true;
             this.patternLabel.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.patternLabel.ForeColor = System.Drawing.Color.White;
-            this.patternLabel.Location = new System.Drawing.Point(40, 209);
+            this.patternLabel.Location = new System.Drawing.Point(36, 167);
             this.patternLabel.Name = "patternLabel";
-            this.patternLabel.Size = new System.Drawing.Size(337, 28);
+            this.patternLabel.Size = new System.Drawing.Size(285, 23);
             this.patternLabel.TabIndex = 1;
             this.patternLabel.Text = "Your pattern length was: ";
             // 
@@ -61,9 +61,9 @@
             this.lengthLabel.AutoSize = true;
             this.lengthLabel.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lengthLabel.ForeColor = System.Drawing.Color.White;
-            this.lengthLabel.Location = new System.Drawing.Point(383, 209);
+            this.lengthLabel.Location = new System.Drawing.Point(340, 167);
             this.lengthLabel.Name = "lengthLabel";
-            this.lengthLabel.Size = new System.Drawing.Size(25, 28);
+            this.lengthLabel.Size = new System.Drawing.Size(21, 23);
             this.lengthLabel.TabIndex = 2;
             this.lengthLabel.Text = "0";
             // 
@@ -71,9 +71,10 @@
             // 
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButton.ForeColor = System.Drawing.Color.White;
-            this.closeButton.Location = new System.Drawing.Point(171, 354);
+            this.closeButton.Location = new System.Drawing.Point(152, 283);
+            this.closeButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(105, 41);
+            this.closeButton.Size = new System.Drawing.Size(93, 33);
             this.closeButton.TabIndex = 3;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
@@ -81,15 +82,16 @@
             // 
             // GameOverScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Black;
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.lengthLabel);
             this.Controls.Add(this.patternLabel);
             this.Controls.Add(this.gameOverLabel);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "GameOverScreen";
-            this.Size = new System.Drawing.Size(452, 462);
+            this.Size = new System.Drawing.Size(402, 370);
             this.Load += new System.EventHandler(this.GameOverScreen_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
