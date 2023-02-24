@@ -32,42 +32,30 @@ namespace SimonSays
 
         private void GameScreen_Load(object sender, EventArgs e)
         {
-            /*
             GraphicsPath buttonRegion = new GraphicsPath();
-            Matrix rRotation = new Matrix();
-            Matrix yRotation = new Matrix();
-            Matrix bRotation = new Matrix();
-            buttonRegion.AddEllipse(5, 5, 236, 236);
-            rRotation.RotateAt(90, new PointF(118/2, 118/2));
-            bRotation.RotateAt(90, new PointF(0 ,108));
-            yRotation.RotateAt(270, new PointF(25, 25));
-
+            buttonRegion.AddEllipse(5, 5, greenButton.Width*2, greenButton.Height*2);
             greenButton.Region = new Region(buttonRegion);
 
-            buttonRegion.Transform(rRotation);
-            redButton.Region = new Region(buttonRegion);
 
-            buttonRegion.Transform(bRotation);
-            blueButton.Region = new Region(buttonRegion);
-
-            buttonRegion.Transform(yRotation);
+            buttonRegion = new GraphicsPath();
+            buttonRegion.AddEllipse(5, -5 - greenButton.Height, greenButton.Width * 2, greenButton.Height * 2);
             yellowButton.Region = new Region(buttonRegion);
-            */
-            GraphicsPath buttonRegion = new GraphicsPath();
-            buttonRegion.AddEllipse(5, 5, 236, 236);
-            greenButton.Region = new Region(buttonRegion);
 
-            Matrix rRotation = new Matrix();
-            rRotation.RotateAt(90, new PointF(118/2, 118/2));
-            buttonRegion.Transform(rRotation);
+
+            buttonRegion = new GraphicsPath();
+            buttonRegion.AddEllipse(-5-greenButton.Width, 5, greenButton.Width * 2, greenButton.Height * 2);
             redButton.Region = new Region(buttonRegion);
+
+            buttonRegion = new GraphicsPath();
+            buttonRegion.AddEllipse(-5 - greenButton.Width, -5 - greenButton.Height, greenButton.Width * 2, greenButton.Height * 2);
+            blueButton.Region = new Region(buttonRegion);
 
             //buttonRegion.Reset();
 
-            
+
             Matrix yRotation = new Matrix();
            // yRotation.RotateAt(0, new PointF(0, 0));
-            yellowButton.Region = new Region(buttonRegion);
+           // yellowButton.Region = new Region(buttonRegion);
             //TODO: clear the pattern list from form1
             //TODO: refresh
             //TODO: pause for a bit
