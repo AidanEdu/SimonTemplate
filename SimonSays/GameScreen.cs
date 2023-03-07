@@ -18,6 +18,7 @@ namespace SimonSays
         //TODO: create an int guess variable to track what part of the pattern the user is at
         int guess;
 
+        //set up for later 
         Random randGen = new Random();
         SoundPlayer red = new SoundPlayer(Properties.Resources.red);
         SoundPlayer blue = new SoundPlayer(Properties.Resources.blue);
@@ -32,10 +33,14 @@ namespace SimonSays
 
         private void GameScreen_Load(object sender, EventArgs e)
         {
+
+            
+            //making the buttons look fancy
+
             GraphicsPath buttonRegion = new GraphicsPath();
             buttonRegion.AddEllipse(5, 5, greenButton.Width*2, greenButton.Height*2);
             greenButton.Region = new Region(buttonRegion);
-
+            
 
             buttonRegion = new GraphicsPath();
             buttonRegion.AddEllipse(5, -5 - greenButton.Height, greenButton.Width * 2, greenButton.Height * 2);
@@ -73,10 +78,11 @@ namespace SimonSays
 
             //TODO: get rand num between 0 and 4 (0, 1, 2, 3) and add to pattern list. Each number represents a button. For example, 0 may be green, 1 may be blue, etc.
 
+
+            
             Form1.pattern.Add(randGen.Next(1, 5));
 
-            //TODO: create a for loop that shows each value in the pattern by lighting up approriate button
-
+            //plays the computers turn
             for (int i = 0; i < Form1.pattern.Count; i++)
             {
                 if (Form1.pattern[i] == 1)
@@ -115,21 +121,12 @@ namespace SimonSays
         }
                 
         //TODO: create one of these event methods for each button
+
+        //player turn
         private void greenButton_Click(object sender, EventArgs e)
         {
             sound("green");
             ButtonClick(1);
-            //TODO: is the value in the pattern list at index [guess] equal to a green?
-            // change button color
-            // play sound
-            // refresh
-            // pause
-            // set button colour back to original
-            // add one to the guess variable
-
-            //TODO:check to see if we are at the end of the pattern, (guess is the same as pattern list count).
-            // call ComputerTurn() method
-            // else call GameOver method
         }
         private void redButton_Click(object sender, EventArgs e)
         {
@@ -148,6 +145,7 @@ namespace SimonSays
         }
         public async void ButtonClick(int color)
         {
+            //checks to see if the player failed or moves on
             if (color == Form1.pattern[guess])
             {
                 guess++; 
@@ -182,6 +180,7 @@ namespace SimonSays
 
         public void sound(string name)
         {
+            //allows for overlaping sounds
             var sound = new System.Windows.Media.MediaPlayer();
             sound.Open(new Uri(Application.StartupPath + $"/Resources/{name}.wav"));
             sound.Play();
